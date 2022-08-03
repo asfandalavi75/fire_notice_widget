@@ -191,7 +191,7 @@ Feed generateFeedInst() {
     ..isDelete = 0
     ..titleTrim = "trim"
     ..createdDate = "01-Aug-22"
-    ..updatedDate = "02-Aug-22"
+    ..updatedDate = "Updated 20 mins ago"
     ..incidentTypeCategory = "Bad"
     ..noOfLikes = 5
     ..recentFlag = 1
@@ -202,7 +202,7 @@ Feed generateFeedInst() {
     ..kount = 42
     ..incidentId = 1445122
     ..isMarkerSelected = true
-    ..distance = 80
+    ..distance = 21
     ..discoveryAcres = 22.1
     ..percentContained = 65
     ..estimatedCostToDate = 4500040

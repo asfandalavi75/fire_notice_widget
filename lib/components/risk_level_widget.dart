@@ -8,24 +8,43 @@ class RiskLevelWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     String level = calcRisk(dist);
-    return Container(
-      width: MediaQuery.of(context).size.height * 0.12,
-      height: MediaQuery.of(context).size.height * 0.12,
-      margin: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(width: 6, color: Colors.white)),
-      child: Center(
-          child: Text(
-        level,
-        style: GoogleFonts.lato(
-          fontWeight: FontWeight.w600,
-          fontSize: 20,
-          color: Colors.white,
+    return Column(
+      children: [
+        Container(
+          width: screenHeight * 0.135,
+          height: screenHeight * 0.135,
+          margin: const EdgeInsets.fromLTRB(0, 10, 20, 10),
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(width: 4, color: Colors.white)),
+          child: Center(
+            child: Text(
+              level,
+              style: GoogleFonts.lato(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
-        textAlign: TextAlign.center,
-      )),
+        Container(
+          padding: const EdgeInsets.only(right: 20),
+          child: Text(
+            (dist.toInt()).toString() + " Miles Away",
+            style: GoogleFonts.lato(
+              fontWeight: FontWeight.w500,
+              fontSize: 13,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
