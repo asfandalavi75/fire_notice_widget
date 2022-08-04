@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'components/risk_flag_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,8 +12,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Fire Notice Widget',
+      theme: ThemeData(
+          brightness: Brightness.dark,
+          textTheme: GoogleFonts.robotoTextTheme(
+            const TextTheme(
+              headline1: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+              headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+              bodyText2: TextStyle(fontSize: 14.0),
+            ),
+          )),
       home: MyHomePage(),
     );
   }
@@ -29,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(child: RiskFlagWidget()),
+      body: SafeArea(child: RiskFlagWidget()),
     );
   }
 }

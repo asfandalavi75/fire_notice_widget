@@ -17,7 +17,7 @@ class RiskLevelWidget extends StatelessWidget {
         Container(
           width: screenHeight * 0.135,
           height: screenHeight * 0.135,
-          margin: const EdgeInsets.fromLTRB(0, 10, 20, 10),
+          margin: const EdgeInsets.fromLTRB(0, 10, 35, 10),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(width: 4, color: Colors.white)),
@@ -34,7 +34,7 @@ class RiskLevelWidget extends StatelessWidget {
           ),
         ),
         Container(
-          padding: const EdgeInsets.only(right: 20),
+          padding: const EdgeInsets.only(right: 35),
           child: Text(
             (dist.toInt()).toString() + " Miles Away",
             style: GoogleFonts.lato(
