@@ -6,7 +6,7 @@ import 'black_data_tile.dart';
 
 class RiskFlagWidget extends StatelessWidget {
   const RiskFlagWidget({Key? key}) : super(key: key);
-
+  // function used to set background gradient
   Gradient? _getRiskColor(double? dist) {
     if (dist! < 50) {
       return const RadialGradient(
@@ -104,7 +104,7 @@ class RiskFlagWidget extends StatelessWidget {
                           // color: Color.fromRGBO(32, 41, 197, 0.4),
                           child: RiskLevelWidget(dist: test.distance)),
 
-                      ///EVACUATION NOTICE TEXT
+                      ///EVACUATION NOTICE TEXT (STATIC)
                       Container(
                         alignment: Alignment.topCenter,
                         padding: const EdgeInsets.only(left: 18, top: 15),
@@ -133,6 +133,7 @@ class RiskFlagWidget extends StatelessWidget {
                 ///Right Side TILES
                 Container(
                   // color: Color.fromRGBO(62, 141, 217, 0.4),
+                  // Must have bounded width and heigth
                   width: screenWidth * 0.56,
                   height: screenHeight * 0.28,
                   child: GridView.count(
@@ -205,6 +206,7 @@ class RiskFlagWidget extends StatelessWidget {
               ],
             ),
           ),
+          //Space at the bottom for scrolling indicators
           SizedBox(
             height: screenHeight * 0.05,
           )

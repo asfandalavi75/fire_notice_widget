@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fire Notice Widget',
       theme: ThemeData(
+          // might not be working as intended
           brightness: Brightness.dark,
           textTheme: GoogleFonts.robotoTextTheme(
             const TextTheme(

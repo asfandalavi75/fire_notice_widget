@@ -172,6 +172,7 @@ Feed _$FeedFromJson(Map<String, dynamic> json) => Feed()
   ..FireMgmtComplexity = json['FireMgmtComplexity'] as String
   ..FireCause = json['FireCause'] as String;
 
+//generates a feed for testing purposes
 Feed generateFeedInst() {
   return Feed()
     ..id = 32

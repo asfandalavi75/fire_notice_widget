@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../classes/feed.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+//Circular Risk level indicator and Distance display widget
 class RiskLevelWidget extends StatelessWidget {
   const RiskLevelWidget({Key? key, this.dist}) : super(key: key);
   final dist;
