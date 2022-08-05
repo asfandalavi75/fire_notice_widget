@@ -142,16 +142,63 @@ class RiskFlagWidget extends StatelessWidget {
                     children: <Widget>[
                       BlackDataTile(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('% Contained'),
-                            Text(test.percentContained.toString() + "%")
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text('% Contained',
+                                  style: Theme.of(context).textTheme.headline2),
+                            ),
+                            Text(
+                              test.percentContained.toString() + "%",
+                            )
                           ],
                         ),
                       ),
-                      BlackDataTile(child: Center(child: Text("204000"))),
-                      BlackDataTile(child: Center(child: Text("20,000"))),
-                      BlackDataTile(child: Center(child: Text("20,000"))),
+                      BlackDataTile(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text('Current Size',
+                                  style: Theme.of(context).textTheme.headline2),
+                            ),
+                            // ignore: prefer_const_constructors
+                            Text(
+                              "20,000 Acres",
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        ),
+                      ),
+                      // temporary data for display purposes only
+                      BlackDataTile(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text('Air Quality',
+                                  style: Theme.of(context).textTheme.headline2),
+                            ),
+                            Text("70")
+                          ],
+                        ),
+                      ),
+                      BlackDataTile(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text('Wind',
+                                  style: Theme.of(context).textTheme.headline2),
+                            ),
+                            // temporary data for display purposes only
+                            const Icon(
+                              Icons.explore,
+                              size: 50,
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 )

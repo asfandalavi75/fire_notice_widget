@@ -22,8 +22,11 @@ class MyApp extends StatelessWidget {
                   fontSize: 23,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
-              headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-              bodyText2: TextStyle(fontSize: 14.0),
+              headline2: TextStyle(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white),
+              bodyText2: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
             ),
           )),
       home: MyHomePage(),
