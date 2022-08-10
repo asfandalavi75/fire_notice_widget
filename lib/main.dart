@@ -1,3 +1,4 @@
+import 'package:fire_notice_widget/components/wind_compass.dart';
 import 'package:flutter/material.dart';
 import 'components/risk_flag_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,7 +47,15 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: RiskFlagWidget()),
+      body: SafeArea(
+          child: Center(
+        child: Container(
+          width: 300,
+          height: 300,
+          // color: Color.fromRGBO(62, 141, 217, 0.4),
+          child: WindCompass(),
+        ),
+      )),
     );
   }
 }

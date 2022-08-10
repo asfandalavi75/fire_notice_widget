@@ -10,8 +10,6 @@ class BlackDataTile extends StatefulWidget {
 class _BlackDataTileState extends State<BlackDataTile> {
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.fromLTRB(0, 3, 3, 3),
       decoration: const BoxDecoration(

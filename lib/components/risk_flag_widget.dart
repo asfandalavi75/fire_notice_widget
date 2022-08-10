@@ -3,6 +3,7 @@ import '../classes/feed.dart';
 import './risk_level_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'black_data_tile.dart';
+import './wind_compass.dart';
 
 class RiskFlagWidget extends StatelessWidget {
   const RiskFlagWidget({Key? key}) : super(key: key);
@@ -51,7 +52,6 @@ class RiskFlagWidget extends StatelessWidget {
 
     Feed test = generateFeedInst();
     return Container(
-      // color: _getRiskColor(test.distance),
       decoration: BoxDecoration(gradient: _getRiskColor(test.distance)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -145,7 +145,7 @@ class RiskFlagWidget extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(12.0),
                               child: Text('% Contained',
                                   style: Theme.of(context).textTheme.headline2),
                             ),
@@ -159,7 +159,7 @@ class RiskFlagWidget extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(12.0),
                               child: Text('Current Size',
                                   style: Theme.of(context).textTheme.headline2),
                             ),
@@ -176,7 +176,7 @@ class RiskFlagWidget extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(12.0),
                               child: Text('Air Quality',
                                   style: Theme.of(context).textTheme.headline2),
                             ),
@@ -188,15 +188,12 @@ class RiskFlagWidget extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.all(12.0),
                               child: Text('Wind',
                                   style: Theme.of(context).textTheme.headline2),
                             ),
+                            WindCompass()
                             // temporary data for display purposes only
-                            const Icon(
-                              Icons.explore,
-                              size: 50,
-                            )
                           ],
                         ),
                       ),
