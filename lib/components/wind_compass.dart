@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import "dart:math";
 
-const double LETTER_RATIO = (1 / 6);
+const double LETTER_RATIO = (1 / 5);
 const double SPEED_RATIO = 0.2708;
 const double METERS_PER_SECOND_RATIO = 0.11875;
 const double BORDER_LINE_HEIGHT_RATIO = 0.05521;
 const double BORDER_LINE_WIDTH_RATIO = 0.0083333;
 const double TRIANGLE_HEIGHT_RATIO = 0.05221;
 const double TRIANGLE_LINE_WIDTH_RATIO = 0.04;
+const double NEEDLE_WIDTH_RATIO = 0.0085;
+const double NEEDLE_HEIGHT_RATIO = 0.4054;
+const double NEEDLE_CIRLCE_RADIUS_RATIO = (0.0333);
+
+/// TO JOIN THE CIRCLE WITH THE BOTTOM NEEDLE SHAFT
 
 class WindCompass extends StatelessWidget {
   const WindCompass({Key? key}) : super(key: key);
@@ -15,6 +20,9 @@ class WindCompass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
+      child: Center(
+        child: Text(''),
+      ),
       painter: CompassPainter(),
     );
   }
@@ -29,6 +37,8 @@ class CompassPainter extends CustomPainter {
     var radius = min(centerX, centerY);
     var outerCircleRadius = radius;
     var innerCircleRadius = radius - (size.height * BORDER_LINE_HEIGHT_RATIO);
+    var needleLength = radius - (size.height * NEEDLE_HEIGHT_RATIO);
+    var angleTest = 120;
     double? fontS = size.height * LETTER_RATIO;
 
     var dashBrush = Paint()
@@ -112,7 +122,7 @@ class CompassPainter extends CustomPainter {
     textPainterW.paint(canvas, offset);
 
     //South letter
-    x1 = centerX + outerCircleRadius * cos(97 * pi / 180);
+    x1 = centerX + outerCircleRadius * cos(96 * pi / 180);
     y1 = centerX + outerCircleRadius * sin(30 * pi / 180);
     final textPainterS = TextPainter(
         text: TextSpan(
@@ -147,40 +157,95 @@ class CompassPainter extends CustomPainter {
     path.close();
 
     canvas.drawPath(path, trianglePainter);
+    //////////Compass Needle.
 
-    //Middle Text
-    x1 = centerX + outerCircleRadius * cos(108 * pi / 180);
-    y1 = centerX - outerCircleRadius * sin(23 * pi / 180);
-    final speedPT1 = TextPainter(
-        text: TextSpan(
-          text: '10',
-          style: TextStyle(
-            color: Color.fromRGBO(255, 255, 255, 1),
-            fontWeight: FontWeight.w600,
-            fontSize: size.height * SPEED_RATIO,
-          ),
-        ),
-        textDirection: TextDirection.ltr,
-        textAlign: TextAlign.center);
-    speedPT1.layout();
-    offset = Offset(x1, y1);
-    speedPT1.paint(canvas, offset);
-    x1 = centerX + outerCircleRadius * cos(100 * pi / 180);
-    y1 = centerX - outerCircleRadius * sin(190 * pi / 180);
-    final speedPT2 = TextPainter(
-        text: TextSpan(
-          text: 'm/s',
-          style: TextStyle(
-            color: Color.fromRGBO(255, 255, 255, 1),
-            fontWeight: FontWeight.w600,
-            fontSize: size.height * METERS_PER_SECOND_RATIO,
-          ),
-        ),
-        textDirection: TextDirection.ltr,
-        textAlign: TextAlign.center);
-    speedPT2.layout();
-    offset = Offset(x1, y1);
-    speedPT2.paint(canvas, offset);
+    var needleBrush = Paint()
+      ..color = const Color.fromRGBO(255, 255, 255, 1)
+      ..style = PaintingStyle.stroke
+      ..isAntiAlias = true
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = size.height * NEEDLE_WIDTH_RATIO;
+
+    x1 = centerX + (innerCircleRadius) * cos(angleTest * pi / 180);
+    y1 = centerX + (innerCircleRadius) * sin(angleTest * pi / 180);
+
+    var x2 = centerX + (needleLength) * cos(angleTest * pi / 180);
+    var y2 = centerX + (needleLength) * sin(angleTest * pi / 180);
+
+    var pointPath = Path();
+    pointPath.moveTo(x1, y1);
+    x1 = centerX +
+        (innerCircleRadius - (size.height * 0.016)) *
+            cos((angleTest - 5) * pi / 180);
+    y1 = centerX +
+        (innerCircleRadius - (size.height * 0.016)) *
+            sin((angleTest - 5) * pi / 180);
+    pointPath.lineTo(x1, y1);
+    x1 = centerX +
+        (innerCircleRadius + (size.height * 0.06)) * cos(angleTest * pi / 180);
+    y1 = centerX +
+        (innerCircleRadius + (size.height * 0.06)) * sin(angleTest * pi / 180);
+    pointPath.lineTo(x1, y1);
+    x1 = centerX +
+        (innerCircleRadius - (size.height * 0.016)) *
+            cos((angleTest + 5) * pi / 180);
+    y1 = centerX +
+        (innerCircleRadius - (size.height * 0.016)) *
+            sin((angleTest + 5) * pi / 180);
+    pointPath.lineTo(x1, y1);
+    x1 = centerX + (innerCircleRadius) * cos(angleTest * pi / 180);
+    y1 = centerX + (innerCircleRadius) * sin(angleTest * pi / 180);
+    pointPath.lineTo(x1, y1);
+    canvas.drawPath(pointPath, trianglePainter);
+
+    x1 = centerX + (innerCircleRadius) * cos((angleTest + 180) * pi / 180);
+    y1 = centerX + (innerCircleRadius) * sin((angleTest + 180) * pi / 180);
+    pointPath.lineTo(x1, y1);
+    canvas.drawPath(pointPath, needleBrush);
+    pointPath.arcToPoint(Offset(x1 + 2, y1 + 2), radius: Radius.circular(4));
+    canvas.drawPath(pointPath, needleBrush);
+    //BOTTOM
+    // if (angleTest > 180) {
+    //   x1 = centerX + (innerCircleRadius) * cos((angleTest - 180) * pi / 180);
+    //   y1 = centerX + (innerCircleRadius) * sin((angleTest - 180) * pi / 180);
+
+    //   x2 = centerX + (needleLength) * cos((angleTest - 180) * pi / 180);
+    //   y2 = centerX + (needleLength) * sin((angleTest - 180) * pi / 180);
+
+    //   canvas.drawLine(Offset(x1, y1), Offset(x2, y2), needleBrush);
+
+    //   // Bottom circle
+    //   var circleBrush = Paint()
+    //     ..color = const Color.fromRGBO(255, 255, 255, 1)
+    //     ..style = PaintingStyle.stroke
+    //     ..isAntiAlias = true
+    //     ..strokeCap = StrokeCap.round
+    //     ..strokeJoin = StrokeJoin.round
+    //     ..strokeWidth = size.height * NEEDLE_WIDTH_RATIO;
+
+    //   canvas.drawCircle(Offset(x1, y1),
+    //       size.height * NEEDLE_CIRLCE_RADIUS_RATIO, circleBrush);
+    // } else {
+    //   x1 = centerX + (innerCircleRadius) * cos((angleTest + 180) * pi / 180);
+    //   y1 = centerX + (innerCircleRadius) * sin((angleTest + 180) * pi / 180);
+
+    //   x2 = centerX + (needleLength) * cos((angleTest + 180) * pi / 180);
+    //   y2 = centerX + (needleLength) * sin((angleTest + 180) * pi / 180);
+
+    //   canvas.drawLine(Offset(x1, y1), Offset(x2, y2), needleBrush);
+
+    //   // Bottom circle
+    //   var circleBrush = Paint()
+    //     ..color = const Color.fromRGBO(255, 255, 255, 1)
+    //     ..style = PaintingStyle.stroke
+    //     ..isAntiAlias = true
+    //     ..strokeCap = StrokeCap.round
+    //     ..strokeJoin = StrokeJoin.round
+    //     ..strokeWidth = size.height * NEEDLE_WIDTH_RATIO;
+
+    //   canvas.drawCircle(Offset(x1, y1),
+    //       size.height * NEEDLE_CIRLCE_RADIUS_RATIO, circleBrush);
+    // }
   }
 
   @override

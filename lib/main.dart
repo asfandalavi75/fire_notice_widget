@@ -50,9 +50,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SafeArea(
           child: Center(
         child: Container(
-          width: 300,
-          height: 300,
-          // color: Color.fromRGBO(62, 141, 217, 0.4),
+          width: 100,
+          height: 100,
+          color: Color.fromRGBO(62, 141, 217, 0.4),
           child: WindCompass(),
         ),
       )),
