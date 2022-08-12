@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Container(
           width: 100,
           height: 100,
-          color: Color.fromRGBO(62, 141, 217, 0.4),
+          // color: Color.fromRGBO(62, 141, 217, 0.4),
           child: WindCompass(),
         ),
       )),
